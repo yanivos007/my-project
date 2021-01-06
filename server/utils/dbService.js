@@ -1,10 +1,10 @@
-// Initial pool data
-// Change if needed
+const mysql = require('mysql');
+
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
   password: 'root',
-  database: 'test_schemha',
+  database: 'project',
   connectionLimit: 100,
 });
 

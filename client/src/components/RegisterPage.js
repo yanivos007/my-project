@@ -8,6 +8,10 @@ class RegisterPage extends Component {
         this.lastNameInput = React.createRef()
         this.userNameInput = React.createRef()
         this.passwordInput = React.createRef()
+
+        this.state ={
+            users: []
+        }
     }
     async handleRegisterSubmit(event) {
         event.preventDefault();
@@ -22,15 +26,25 @@ class RegisterPage extends Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={(event) => this.handleRegisterSubmit(event)}>
+            <div  className="register-page">
+                <form action="POST" onSubmit={(event) => this.handleRegisterSubmit(event)}>
+                    
                     <h2>register</h2>
-                    <input type="text" ref={this.firstNameInput}>first name</input>
-                    <input type="text" ref={this.lastNameInput}>last name</input>
-                    <input type="text" ref={this.userNameInput}>user name</input>
-                    <input type="text" ref={this.passwordInput}>password</input>
+                    <div>
+                    <input type="text" required={true} placeholder="first name" ref={this.firstNameInput} />
+                    <br />
+                    <input type="text" required={true} placeholder="last name" ref={this.lastNameInput} />
+                    <br />
+                    <input type="text" required={true} placeholder="user name" ref={this.userNameInput} />
+                    <br />
+                    <input type="password" required={true} placeholder="password" ref={this.passwordInput} />
+                    <br />
+                    <input type="submit"/>
+                    </div>
                 </form>
+              
             </div>
+            
         )
     }
 

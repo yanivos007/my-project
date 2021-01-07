@@ -3,15 +3,12 @@ import React, { Component } from 'react'
 class RegisterPage extends Component {
     constructor() {
         super()
-        this.newUser = [];
         this.firstNameInput = React.createRef()
         this.lastNameInput = React.createRef()
         this.userNameInput = React.createRef()
         this.passwordInput = React.createRef()
 
-        this.state ={
-            users: []
-        }
+        this.state ={}
     }
     async handleRegisterSubmit(event) {
         event.preventDefault();
@@ -19,11 +16,33 @@ class RegisterPage extends Component {
         const lastName = this.lastNameInput.current.value;
         const userName = this.userNameInput.current.value;
         const password = this.passwordInput.current.value;
-        this.state=({
-            newUser : firstName,lastName,userName, password 
-        })
-    }
+        
+        const newUser =  {firstName : firstName ,
+            lastName: lastName,
+            userName : userName,
+             password: password };
 
+             console.log(newUser)
+             const requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json' 
+                },
+                body: JSON.stringify(newUser)
+            };
+            if (requestOptions) {
+                fetch('/api/request', requestOptions)
+                    .then(r => r.json())
+                    .then(res => this.setState({ res }))
+                alert("OK")
+            } else {
+                alert("EROR")
+            }
+        };
+    
+
+    
     render() {
         return (
             <div  className="register-page">
@@ -47,7 +66,8 @@ class RegisterPage extends Component {
             
         )
     }
-
 }
+
+
 
 export default RegisterPage

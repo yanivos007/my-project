@@ -3,7 +3,7 @@ const apiRouter = require('express').Router();
 // Add new routes here.. For example:
 // apiRouter.use('/users', require('./users/usersRouter'));
 
-apiRouter.use('/users', require('./userRouter'));
+apiRouter.use('/users', require('../api/user'));
 
 // AND / OR
 // create entry point.. For example:

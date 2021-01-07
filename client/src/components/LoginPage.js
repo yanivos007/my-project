@@ -12,10 +12,18 @@ class LoginPage extends Component {
     }
     async onSubmitHandler(event) {
         event.preventDefault()
-        const userName = this.userNameInput.current.value;
-        const password = this.userPassword.current.value;
+        const userName = this.userNameInput.current.value
+        const password = this.userPassword.current.value
+        const response = await fetch ('http://localhost:8080/api/users', {
+            method : 'POST',
+             headers: {
+                 "content-type": "application/json"
+             },
+             body: JSON.stringify({userName, password})
+        });
+        const results = await response.json();
         this.setState({
-            users: [ userName , password]
+            users: [...this.state.users, results]
         })
     }
     render() {
